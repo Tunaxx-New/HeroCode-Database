@@ -1,17 +1,14 @@
 from os import getenv
 
+from app.sql.flask.flask import FlaskApp
 
-from duck_override import dive
 
+db_uri = 'postgresql://postgres:tunaxx@localhost:5432/UserData'
 
 def main():
-    host = getenv('HOST')
-    port = getenv('PORT')
-    debug = getenv('DEBUG')
-
-    if None in [host, port, debug]:
-        print('One of (Host, Port, Debug) value is not set!')
-        dive()
+    app = FlaskApp(db_uri)
+    app.set_user({'login': '12', 'password': '123'})
+    print(app.get_user({'login': '12'}))
 
 
 if __name__ == '__main__':

@@ -1,1 +1,1 @@
-from app.sql.flask import FlaskApp
+from app.sql.flask import flask
