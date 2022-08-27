@@ -1,16 +1,14 @@
-from os import getenv
-
 from app.sql.flask.flask import FlaskApp
+from util.load_env import load_env
+from duck_override import quack
 
-
-db_uri = 'postgresql://postgres:tunaxx@localhost:5432/UserData'
 
 def main():
-    app = FlaskApp(db_uri)
-    app.set_user({'login': '12', 'password': '123'})
-    print(app.get_user({'login': '12'}))
+    load_env()
+    FlaskApp()
+    # Code after is working only when server closes!
 
 
 if __name__ == '__main__':
-    print('Hello, Duck!')
+    quack('Hello, Duck!')
     main()
